@@ -19,6 +19,7 @@ public class MainController {
 		List<Pizza> pizzas = pizzaService.finAll();
 		
 		model.addAttribute("list", pizzas);
+		model.addAttribute("object", "pizza");
 		return "index";
 	}
 	

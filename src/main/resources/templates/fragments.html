@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<!-- Single Card -->
+	<div th:fragment="card(list)" th:each="element : ${list}" th:object="${element}" class="card col m-3"
+		style="width: 18rem;">
+		<img th:src="@{*{img}}" class="card-img-top" th:alt="*{name}">
+		<div class="card-body">
+			<h5 class="card-title">[[*{name}]]</h5>
+			<p class="card-text">[[*{description}]]</p>
+			<a href="#" class="btn btn-danger">Dettaglio</a>
+		</div>
+	</div>
+
+</body>
+
+</html>

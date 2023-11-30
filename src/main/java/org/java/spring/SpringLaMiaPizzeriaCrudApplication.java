@@ -17,7 +17,6 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-	
 		pizzaService.save(new Pizza("Bianca", "Pizza con olio d'oliva, rosmarino e sale", "https://wips.plug.it/cips/buonissimo.org/cms/2019/04/pizza-bianca-1.jpg", 3.00));
 		pizzaService.save(new Pizza("Margherita", "Pizza con pomodoro, mozzarella e basilico", "https://wips.plug.it/cips/buonissimo.org/cms/2020/02/pizza-margherita.jpg", 5.00));
 		pizzaService.save(new Pizza("Marinara", "Pizza con pomodoro, aglio e origano", "https://upload.wikimedia.org/wikipedia/commons/1/11/Pizza_marinara.jpg", 3.00));
