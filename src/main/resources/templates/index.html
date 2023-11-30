@@ -10,6 +10,7 @@
 
 	<!-- CSS -->
 	<link rel="stylesheet" th:href="@{/css/application.css}">
+
 </head>
 
 <body>
@@ -18,10 +19,14 @@
 			<h1>Le Pizze:</h1>
 		</div>
 
+		<!-- If list is empty -->
 		<th:block th:if="${list.isEmpty()}">
-			<h1>Non è presente nessuna pizza</h1>
+			<div class="title d-flex justify-content-center mt-5">
+				<h1>Non è presente nessuna pizza</h1>
+			</div>
 		</th:block>
 
+		<!-- If list contains elements -->
 		<th:block th:if="${!list.isEmpty()}">
 			<div class="card-container d-flex row row-cols-4 justify-content-center">
 				<div th:replace="~{fragments :: card(${list})}"></div>

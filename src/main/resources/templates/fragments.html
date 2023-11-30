@@ -7,14 +7,25 @@
 	<a th:fragment="button-detail(link, text)" th:href="${link}" th:text="${text}" class="btn btn-danger">
 	</a>
 
-	<!-- Single Card -->
+	<!-- multiple Cards -->
 	<div th:fragment="card(list)" th:each="element : ${list}" th:object="${element}" class="card col m-3"
 		style="width: 18rem;">
-		<img th:src="@{*{img}}" class="card-img-top" th:alt="*{name}">
+		<img th:src="@{*{img}}" class="card-img-top multi-img" th:alt="*{name}">
 		<div class="card-body">
 			<h5 class="card-title">[[*{name}]]</h5>
 			<p class="card-text">[[*{description}]]</p>
 			<a th:replace="~{fragments :: button-detail(@{'/detail/' + ${element.id}}, 'Dettaglio')}"></a>
+		</div>
+	</div>
+
+	<!-- Single Card -->
+	<div th:fragment="singleCard(element)" th:object="${element}" class="card col-6 mt-5">
+		<img th:src="@{*{img}}" class="card-img-top img-fluid" th:alt="*{name}">
+		<div class="card-body">
+			<h4 class="card-title">[[*{name}]]</h5>
+			<p class="card-text">[[*{description}]]</p>
+			<h6 class="text-danger">Prezzo €[[*{price}]]</h6>
+			<a th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a>
 		</div>
 	</div>
 

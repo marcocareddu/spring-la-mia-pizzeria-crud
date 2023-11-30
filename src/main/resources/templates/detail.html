@@ -19,8 +19,8 @@
 			<h1>Dettaglio Pizza:</h1>
 		</div>
 
-		<div class="card-container d-flex row row-cols-4 justify-content-center">
-			<div th:replace="~{fragments :: card(${list})}"></div>
+		<div class="card-container d-flex row justify-content-center">
+			<div th:replace="~{fragments :: singleCard(${list})}"></div>
 		</div>
 	</div>
 

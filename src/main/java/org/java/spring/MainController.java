@@ -16,21 +16,15 @@ public class MainController {
 	
 	@GetMapping
 	public String getPizzas(Model model) {
-
 		List<Pizza> pizzas = pizzaService.finAll();
-		
 		model.addAttribute("list", pizzas);
-		
 		return "index";
 	}
 	
 	@GetMapping("/detail/{id}")
 	public String getPizza(Model model, @PathVariable int id) {
-
 		Pizza pizza = pizzaService.findById(id);
-		
-		model.addAttribute("id", pizza);
+		model.addAttribute("list", pizza);
 		return "detail";
 	}
-	
 }
