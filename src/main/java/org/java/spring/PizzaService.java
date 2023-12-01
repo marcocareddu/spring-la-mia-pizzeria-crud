@@ -11,11 +11,14 @@ public class PizzaService {
 	@Autowired
 	private PizzaRepository pizzaRepository;
 	
-	public List<Pizza> finAll() {
+	public List<Pizza> findAll() {
 		return pizzaRepository.findAll();
 	}
 	public Pizza findById(int id) {
 		return pizzaRepository.findById(id).get();
+	}
+	public List<Pizza> findByName(String searched) {
+		return pizzaRepository.findByNameContainingIgnoreCase(searched);
 	}
 	public void save(Pizza pizza) {
 		pizzaRepository.save(pizza);
