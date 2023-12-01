@@ -21,6 +21,7 @@ public class MainController {
 				? pizzaService.findAll()
 				: pizzaService.findByName(searched);
 		model.addAttribute("list", pizzas);
+		model.addAttribute("searched", searched == null ? "" : searched);
 		return "index";
 	}
 	
