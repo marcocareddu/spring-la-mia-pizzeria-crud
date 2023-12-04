@@ -1,10 +1,13 @@
 package org.java.spring;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Pizza {
@@ -14,9 +17,17 @@ public class Pizza {
 	private Integer id;
 
 	@Column(columnDefinition = "TEXT")
+	@Length(min = 3, message = "Devi inserire almeno 3 caratteri.")
 	private String description;
+	
+	@Length(min = 3, message = "Devi inserire almeno 3 caratteri.")
+	@Length(max = 20, message = "Il nome deve essere lungo massimo 20 caratteri.")
 	private String name;
+	
+//	@Pattern(regexp = "((http|https)://)?([a-zA-Z0-9]+[.])?[a-zA-Z0-9-]+[.][a-zA-Z]{2,}(/[a-zA-Z0-9-._~:/?#[\\]@!$&'()*+,;=]*)?$", message = "Devi inserire un URL valido.")
 	private String img;
+	
+	@Range(min = 3, max = 30, message = "Il prezzo deve essere compreso tra €3.00 e €30.00.")
 	private double price;
 
 //	Constructors
