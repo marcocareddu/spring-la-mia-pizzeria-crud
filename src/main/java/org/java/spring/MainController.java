@@ -12,45 +12,49 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
+
 @Controller
 public class MainController {
 
 	@Autowired
 	private PizzaService pizzaService;
-	
+
 	@GetMapping
 	public String getPizzas(Model model, @RequestParam(required = false) String searched) {
-		List<Pizza> pizzas = searched == null
-				? pizzaService.findAll()
-				: pizzaService.findByName(searched);
+		List<Pizza> pizzas = searched == null ? pizzaService.findAll() : pizzaService.findByName(searched);
 		model.addAttribute("list", pizzas);
 		model.addAttribute("searched", searched == null ? "" : searched);
 		return "index";
 	}
-	
+
 	@GetMapping("/detail/{id}")
 	public String getPizza(Model model, @PathVariable int id) {
 		Pizza pizza = pizzaService.findById(id);
 		model.addAttribute("list", pizza);
 		return "detail";
 	}
-	
+
 	@GetMapping("/create")
 	public String create(Model model) {
-		
+
 		model.addAttribute("pizza", new Pizza());
-		
+
 		return "create";
 	}
-	
+
 	@PostMapping("/create")
-	public String StorePizza(Model model,
-			@ModelAttribute Pizza pizza,
-			BindingResult bindingResult) {
+	public String store(Model model, @Valid @ModelAttribute Pizza pizza, BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			System.out.println("Errors: \n" + bindingResult);
+			model.addAttribute("pizza", pizza);
+			return "create";
+		}
 		
-		System.out.println("Pizza aggiunta");
+		System.out.println("Pizza " + pizza.getName() + "aggiunta");
 		
 		pizzaService.save(pizza);
-	return "redirect:/";
-}
+		return "redirect:/";
+	}
 }
