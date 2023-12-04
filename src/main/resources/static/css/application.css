@@ -15,3 +15,7 @@ img {
 .search-container {
 	width: 500px;
 }
+
+ul li {
+list-style-type: none;
+}
