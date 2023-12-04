@@ -23,11 +23,21 @@
 		<img th:src="@{*{img}}" class="card-img-top img-fluid" th:alt="*{name}">
 		<div class="card-body">
 			<h4 class="card-title">[[*{name}]]</h5>
-			<p class="card-text">[[*{description}]]</p>
-			<h6 class="text-danger">Prezzo €[[*{price}]]</h6>
-			<a th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a>
+				<p class="card-text">[[*{description}]]</p>
+				<h6 class="text-danger">Prezzo €[[*{price}]]</h6>
+				<a th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a>
 		</div>
 	</div>
+
+	<!-- Header -->
+	<header class="position-fixed container justify-content-between d-flex align-items-center" th:fragment="header">
+
+				<h1>Pizzeria</h1>
+				<div>
+					<a th:insert="~{fragments :: button-detail(@{'/create'}, 'Aggiungi')}"></a>
+				</div>
+
+	</header>
 
 </body>
 
