@@ -31,6 +31,9 @@
 				<h6 class="text-danger">Prezzo €[[*{price}]]</h6>
 				<a th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a>
 				<a th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a>
+				<form th:action="@{'/delete/' + ${element.id}}" method="POST">
+					<button class="btn btn-danger">Elimina</button>
+				</form>
 		</div>
 	</div>
 
@@ -39,7 +42,7 @@
 
 		<h1>Pizzeria</h1>
 		<div>
-			<a th:insert="~{fragments :: button-detail(@{'/create'}, 'Crea nuova pizza')}"></a>
+			<a th:insert="~{fragments :: button-detail(@{'/form'}, 'Crea nuova pizza')}"></a>
 		</div>
 
 	</header>
