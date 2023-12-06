@@ -52,7 +52,7 @@ public class MainController {
 			return "create";
 		}
 		
-		System.out.println("Pizza " + pizza.getName() + "aggiunta");
+		System.out.println("Pizza " + pizza.getName() + " aggiunta");
 		
 		pizzaService.save(pizza);
 		return "redirect:/";
@@ -67,7 +67,6 @@ public class MainController {
 		return "create";
 	}
 
-	
 	@PostMapping("/edit/{id}")
 	public String updatePizza(Model model, @Valid @ModelAttribute Pizza pizza, BindingResult bindingResult) {
 
@@ -77,10 +76,15 @@ public class MainController {
 			return "create";
 		}
 		
-		System.out.println("Pizza " + pizza.getName() + "modificata");
+		System.out.println("Pizza " + pizza.getName() + " modificata");
 		
 		pizzaService.save(pizza);
 		return "redirect:/";
 	}
 	
+	@PostMapping("/delete/{id}")
+	public String deletePizza(@PathVariable int id) {
+		pizzaService.deleteById(id);
+		return "redirect:/";
+	}
 }
