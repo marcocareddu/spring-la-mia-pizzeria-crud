@@ -16,6 +16,9 @@
 			<p class="card-text">[[*{description}]]</p>
 			<a th:replace="~{fragments :: button-detail(@{'/detail/' + ${element.id}}, 'Dettaglio')}"></a>
 			<a th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a>
+			<form th:action="@{'/delete/' + ${element.id}}" method="POST">
+				<button class="btn btn-danger">Elimina</button>
+			</form>
 		</div>
 	</div>
 
