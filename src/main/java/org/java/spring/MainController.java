@@ -59,7 +59,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String updatePizza(Model model, @PathVariable int id) {
+	public String editPizza(Model model, @PathVariable int id) {
 		
 		Pizza pizza = pizzaService.findById(id);
 		model.addAttribute("pizza", pizza);
@@ -67,4 +67,20 @@ public class MainController {
 		return "create";
 	}
 
+	
+	@PostMapping("/edit/{id}")
+	public String updatePizza(Model model, @Valid @ModelAttribute Pizza pizza, BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			System.out.println("Errors: \n" + bindingResult);
+			model.addAttribute("pizza", pizza);
+			return "create";
+		}
+		
+		System.out.println("Pizza " + pizza.getName() + "modificata");
+		
+		pizzaService.save(pizza);
+		return "redirect:/";
+	}
+	
 }
