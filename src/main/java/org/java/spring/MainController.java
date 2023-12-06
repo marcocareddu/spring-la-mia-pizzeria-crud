@@ -39,8 +39,8 @@ public class MainController {
 	public String create(Model model) {
 
 		model.addAttribute("pizza", new Pizza());
-
-		return "create";
+		model.addAttribute("action", "create");
+		return "form";
 	}
 
 	@PostMapping("/create")
@@ -49,7 +49,7 @@ public class MainController {
 		if (bindingResult.hasErrors()) {
 			System.out.println("Errors: \n" + bindingResult);
 			model.addAttribute("pizza", pizza);
-			return "create";
+			return "form";
 		}
 		
 		System.out.println("Pizza " + pizza.getName() + " aggiunta");
@@ -63,8 +63,9 @@ public class MainController {
 		
 		Pizza pizza = pizzaService.findById(id);
 		model.addAttribute("pizza", pizza);
+		model.addAttribute("action", "edit");
 		
-		return "create";
+		return "form";
 	}
 
 	@PostMapping("/edit/{id}")
@@ -73,7 +74,7 @@ public class MainController {
 		if (bindingResult.hasErrors()) {
 			System.out.println("Errors: \n" + bindingResult);
 			model.addAttribute("pizza", pizza);
-			return "create";
+			return "form";
 		}
 		
 		System.out.println("Pizza " + pizza.getName() + " modificata");
